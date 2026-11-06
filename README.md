@@ -2,6 +2,12 @@
 
 Halaman web statis untuk Villa Permai, usaha penyewaan tiga unit vila di kawasan Puncak, Kabupaten Bogor. Dibuat agar calon tamu bisa mengecek ketersediaan, melihat perkiraan biaya, dan mengirim pesanan sendiri tanpa harus tanya jawab manual lewat WhatsApp.
 
+## Identitas
+
+- **Nama:** Fadhilah Ramadhan Arrayyan
+- **NIM:** 24011130518
+- **Repository:** https://github.com/arrayya/FadhilahRamadhanArrayyan_24011130518_uts.git
+
 ## Struktur Proyek
 
 ```
@@ -31,7 +37,7 @@ Buka file `index.html` langsung di browser, atau jalankan lewat live server (mis
 - Daftar tiga vila ditampilkan sebagai kartu, lengkap dengan status tersedia/penuh.
 - Pencarian/filter vila berdasarkan nama, lokasi, atau fasilitas.
 - Form pemesanan dengan dua tombol: **Cek Ketersediaan** (menampilkan ringkasan biaya tanpa mengirim pesanan) dan **Pesan Sekarang** (mengirim sekaligus menyimpan pesanan).
-- Validasi input berbahasa Indonesia: nama wajib diisi, vila wajib dipilih, tanggal check-out harus setelah check-in, tanggal tidak boleh di masa lalu, dan jumlah tamu dibatasi 1–10 orang.
+- Validasi input berbahasa Indonesia: nama wajib diisi, vila wajib dipilih, tanggal check-out harus setelah check-in, tanggal tidak boleh di masa lalu, dan jumlah tamu minimal 1 orang. Kapasitas normal 30 orang; tamu selebihnya dikenai biaya extra bed Rp100.000 per orang.
 - Nama tamu terakhir dan riwayat pesanan disimpan di `localStorage`, sehingga tetap muncul saat halaman dibuka ulang di perangkat yang sama.
 - Tampilan responsif dengan breakpoint 900px dan 640px: tata letak kartu, formulir, dan navigasi menyesuaikan ukuran layar.
 
@@ -54,15 +60,25 @@ Website telah ditampilkan dan didokumentasikan dalam tangkapan layar satu halama
 <p><img src="assets/screenshot-mobile.png" alt="Tangkapan layar seluruh tampilan website Villa Permai versi mobile" width="260"></p>
 </details>
 
+### Contoh Alur Pemesanan
+
+1. **Cek ketersediaan dan rincian biaya:** customer memeriksa total biaya vila sebelum memesan.
+
+   ![Customer mengecek ketersediaan vila dan rincian biaya, termasuk biaya extra bed](assets/contoh-cek-ketersediaan.png)
+
+2. **Pemesanan berhasil:** setelah yakin, customer memesan vila dan melihat konfirmasi serta pesanan tersimpan di riwayat.
+
+   ![Konfirmasi pemesanan vila berhasil dan tampil di riwayat pesanan](assets/contoh-pemesanan-berhasil.png)
+
 ## Logika Perhitungan Harga
 
 Total biaya dihitung dengan fungsi `hitungTotalHarga()`:
 
 ```
-total = harga per malam × jumlah malam
+total = (harga per malam × jumlah malam) + biaya extra bed
 ```
 
-Jika jumlah tamu lebih dari 2 orang, setiap tamu tambahan dikenakan biaya ekstra Rp100.000 per malam. Logika ini dipilih karena vila Villa Permai disewakan per unit (bukan per kepala), tetapi tamu yang lebih banyak dari kapasitas normal tetap menambah biaya operasional (air, listrik, perlengkapan tambahan).
+Kapasitas normal adalah 30 orang. Setiap tamu di atas kapasitas tersebut dikenai biaya extra bed Rp100.000 per orang, sekali per pemesanan.
 
 ## Riwayat Commit
 

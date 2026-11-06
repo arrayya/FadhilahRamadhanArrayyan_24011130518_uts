@@ -31,6 +31,9 @@ const daftarVila = [
   }
 ];
 
+const BATAS_TAMU_NORMAL = 30;
+const BIAYA_EXTRA_BED_PER_ORANG = 100000;
+
 function formatRupiah(angka) {
   return "Rp" + angka.toLocaleString("id-ID");
 }
@@ -102,6 +105,22 @@ function renderDaftarVila(data) {
     status.textContent = vila.tersedia ? "Tersedia" : "Penuh";
     kartu.appendChild(status);
 
+    const tombolPesan = document.createElement("button");
+    tombolPesan.type = "button";
+    tombolPesan.className = "tombol " + (vila.tersedia ? "tombol--isi" : "tombol--nonaktif");
+    tombolPesan.textContent = vila.tersedia ? "Pilih Villa Ini" : "Villa Sedang Penuh";
+    tombolPesan.disabled = !vila.tersedia;
+    if (vila.tersedia) {
+      tombolPesan.addEventListener("click", function () {
+        document.getElementById("pilihVila").value = vila.id;
+        document.getElementById("form-pesan").scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    }
+    kartu.appendChild(tombolPesan);
+
     container.appendChild(kartu);
   });
 }
@@ -127,17 +146,9 @@ function hitungJumlahMalam(tanggalCheckin, tanggalCheckout) {
 }
 
 function hitungTotalHarga(vila, jumlahMalam, jumlahTamu) {
-  const batasTamuNormal = 10;
-  const biayaTamuTambahanPerMalam = 100000;
-
-  let total = vila.harga * jumlahMalam;
-
-  if (jumlahTamu > batasTamuNormal) {
-    const tamuLebih = jumlahTamu - batasTamuNormal;
-    total = total + tamuLebih * biayaTamuTambahanPerMalam * jumlahMalam;
-  }
-
-  return total;
+  const jumlahExtraBed = Math.max(0, jumlahTamu - BATAS_TAMU_NORMAL);
+  const biayaExtraBed = jumlahExtraBed * BIAYA_EXTRA_BED_PER_ORANG;
+  return vila.harga * jumlahMalam + biayaExtraBed;
 }
 
 function validasiForm(data) {
@@ -168,8 +179,8 @@ function validasiForm(data) {
     }
   }
 
-  if (!data.jumlahTamu || data.jumlahTamu < 1 || data.jumlahTamu > 10) {
-    errors.push("Jumlah tamu harus antara 1 sampai 30 orang.");
+  if (!Number.isInteger(data.jumlahTamu) || data.jumlahTamu < 1) {
+    errors.push("Jumlah tamu harus berupa bilangan bulat minimal 1 orang.");
   }
 
   return errors;
@@ -181,7 +192,7 @@ function ambilDataForm() {
     vilaId: document.getElementById("pilihVila").value,
     checkin: document.getElementById("tanggalCheckin").value,
     checkout: document.getElementById("tanggalCheckout").value,
-    jumlahTamu: parseInt(document.getElementById("jumlahTamu").value, 10)
+    jumlahTamu: document.getElementById("jumlahTamu").valueAsNumber
   };
 }
 
@@ -207,9 +218,18 @@ function tampilkanRingkasanBiaya(vila, jumlahMalam, jumlahTamu, total) {
   const rincian = [
     "Vila: " + vila.nama,
     "Lama menginap: " + jumlahMalam + " malam",
-    "Jumlah tamu: " + jumlahTamu + " orang",
-    "Total biaya: " + formatRupiah(total)
+    "Jumlah tamu: " + jumlahTamu + " orang"
   ];
+
+  const jumlahExtraBed = Math.max(0, jumlahTamu - BATAS_TAMU_NORMAL);
+  if (jumlahExtraBed > 0) {
+    rincian.push(
+      "Extra bed: " + jumlahExtraBed + " orang × " +
+      formatRupiah(BIAYA_EXTRA_BED_PER_ORANG) + " = " +
+      formatRupiah(jumlahExtraBed * BIAYA_EXTRA_BED_PER_ORANG)
+    );
+  }
+  rincian.push("Total biaya: " + formatRupiah(total));
 
   rincian.forEach(function (baris) {
     const p = document.createElement("p");
@@ -339,6 +359,7 @@ function prosesPesanSekarang(event) {
 
   const jumlahMalam = hitungJumlahMalam(data.checkin, data.checkout);
   const total = hitungTotalHarga(vila, jumlahMalam, data.jumlahTamu);
+  const jumlahExtraBed = Math.max(0, data.jumlahTamu - BATAS_TAMU_NORMAL);
 
   const pesanan = {
     nama: data.nama,
@@ -355,8 +376,13 @@ function prosesPesanSekarang(event) {
 
   tampilkanPesan(
     "Pesanan atas nama " + data.nama + " untuk " + vila.nama +
-    " berhasil dikirim. Total pembayaran " + formatRupiah(total) +
-    ". Admin akan menghubungi Anda via WhatsApp untuk konfirmasi.",
+    " berhasil tersimpan di browser ini." +
+    (jumlahExtraBed > 0
+      ? " Biaya extra bed " + jumlahExtraBed + " orang: " +
+        formatRupiah(jumlahExtraBed * BIAYA_EXTRA_BED_PER_ORANG) + "."
+      : "") +
+    " Total pembayaran " + formatRupiah(total) +
+    ". Untuk konfirmasi, silakan hubungi admin melalui WhatsApp yang tercantum di bagian bawah halaman.",
     "sukses"
   );
 
