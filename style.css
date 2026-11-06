@@ -28,7 +28,7 @@ body {
   margin: 0;
   background: var(--latar);
   color: var(--teks);
-  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-family: "Barlow", "Segoe UI", sans-serif;
   line-height: 1.65;
 }
 
@@ -37,7 +37,7 @@ h2,
 h3 {
   margin: 0;
   color: var(--biru-malam);
-  font-family: "DM Serif Display", Georgia, serif;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
   line-height: 1.2;
 }
 
@@ -260,7 +260,7 @@ main {
 .villa-card__price {
   margin: 1rem 0 0.8rem;
   color: var(--biru-utama);
-  font-family: "DM Serif Display", Georgia, serif;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
   font-size: 1.28rem;
   font-weight: 600;
 }
