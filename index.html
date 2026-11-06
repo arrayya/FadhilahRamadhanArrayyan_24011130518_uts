@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Villa Permai — Pemesanan Villa di Puncak Bogor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__hills" aria-hidden="true"></div>
+    <div class="header__isi">
+      <p class="header__label">Puncak, Kabupaten Bogor</p>
+      <h1 class="header__judul">Villa Permai</h1>
+      <p class="header__tagline">Daftar villa dengan view indah dan suasana sejuk, pemandangan bukit, dapat dipesan lewat website.</p>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <a href="#daftar-vila">Daftar Villa</a>
+    <a href="#form-pesan">Form Pemesanan</a>
+    <a href="#riwayat">Riwayat Pesanan</a>
+  </nav>
+
+  <main>
+    <section id="daftar-vila" class="section">
+      <h2 class="section__judul">Pilih Villa yang Sesuai</h2>
+      <p class="section__deskripsi">Setiap villa punya fasilitas yang berbeda. Cari berdasarkan nama, lokasi, atau fasilitas yang Anda butuhkan.</p>
+
+      <div class="search-box">
+        <label for="cariVila">Cari villa</label>
+        <input type="text" id="cariVila" name="cariVila" placeholder="Misalnya: kolam renang, Cisarua, Anggrek">
+      </div>
+
+      <div class="villa-list" id="villaList"></div>
+    </section>
+
+    <section id="form-pesan" class="section section--alt">
+      <h2 class="section__judul">Form Pemesanan</h2>
+      <p class="section__deskripsi">Isi data di bawah ini untuk cek rincian biaya.</p>
+
+      <form id="formPesan" class="form-pesan" novalidate>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="namaTamu">Nama Tamu</label>
+            <input type="text" id="namaTamu" name="namaTamu" placeholder="Nama lengkap Anda">
+          </div>
+
+          <div class="form-field">
+            <label for="pilihVila">Pilih Vila</label>
+            <select id="pilihVila" name="pilihVila"></select>
+          </div>
+
+          <div class="form-field">
+            <label for="tanggalCheckin">Tanggal Check in</label>
+            <input type="date" id="tanggalCheckin" name="tanggalCheckin">
+          </div>
+
+          <div class="form-field">
+            <label for="tanggalCheckout">Tanggal Check out</label>
+            <input type="date" id="tanggalCheckout" name="tanggalCheckout">
+          </div>
+
+          <div class="form-field">
+            <label for="jumlahTamu">Jumlah Tamu</label>
+            <input type="number" id="jumlahTamu" name="jumlahTamu" min="1" max="30" placeholder="1 - 30 orang">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="btnCek" class="tombol tombol--garis">Cek Ketersediaan</button>
+          <button type="submit" id="btnPesan" class="tombol tombol--isi">Pesan Sekarang</button>
+        </div>
+      </form>
+
+      <div id="hasilPesanan" class="hasil-box" role="status" aria-live="polite"></div>
+    </section>
+
+    <section id="riwayat" class="section">
+      <h2 class="section__judul">Riwayat Pesanan Tersimpan</h2>
+      <p class="section__deskripsi">Pesanan yang berhasil dikirim akan muncul di sini.</p>
+      <div id="daftarRiwayat" class="riwayat-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__isi">
+      <h3>Villa Permai</h3>
+      <p>Kawasan Puncak, Kabupaten Bogor, Jawa Barat</p>
+      <p>Pemilik: Pak Hendra — WhatsApp 0856-8756-1964</p>
+      <p>Email: villapermai@gmail.com</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

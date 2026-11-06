@@ -1,0 +1,741 @@
+:root {
+  color-scheme: light;
+  --biru-malam: #16324f;
+  --biru-utama: #2878b8;
+  --biru-terang: #e8f4fc;
+  --biru-garis: #d7e5ef;
+  --biru-lembut: #5e7890;
+  --putih: #ffffff;
+  --latar: #f3f7fb;
+  --teks: #1d3145;
+  --koral: #ed8b72;
+  --koral-gelap: #a94e3d;
+  --bayangan: 0 18px 48px rgba(30, 66, 99, 0.09);
+  --radius-besar: 26px;
+  --radius-kecil: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  margin: 0;
+  background: var(--latar);
+  color: var(--teks);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--biru-malam);
+  font-family: "DM Serif Display", Georgia, serif;
+  line-height: 1.2;
+}
+
+p {
+  max-width: 62ch;
+  margin: 0 0 0.65rem;
+  color: var(--biru-lembut);
+}
+
+a {
+  color: inherit;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  min-height: 390px;
+  align-items: center;
+  overflow: hidden;
+  padding: 4.5rem max(7vw, calc((100vw - 1180px) / 2));
+  background:
+    linear-gradient(90deg, rgba(15, 39, 62, 0.84) 0%, rgba(20, 57, 84, 0.62) 48%, rgba(20, 57, 84, 0.18) 100%),
+    url("assets/permai.png") center 56% / cover no-repeat;
+}
+
+.header__isi {
+  position: relative;
+  z-index: 1;
+  width: min(590px, 60%);
+}
+
+.header__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #d9effc;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.header__judul {
+  color: var(--putih);
+  font-size: clamp(3rem, 7vw, 5.4rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+
+.header__tagline {
+  max-width: 48ch;
+  margin-top: 1rem;
+  color: #d9eaf5;
+  font-size: 1.08rem;
+}
+
+.header__hills {
+  display: none;
+}
+
+.header::after {
+  content: none;
+}
+
+.nav {
+  position: sticky;
+  z-index: 10;
+  top: 14px;
+  display: flex;
+  width: min(1120px, calc(100% - 48px));
+  min-height: 68px;
+  align-items: center;
+  gap: 0.4rem;
+  margin: -27px auto 0;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(215, 229, 239, 0.85);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--bayangan);
+  backdrop-filter: blur(14px);
+}
+
+.nav a {
+  padding: 0.6rem 1rem;
+  border-radius: 11px;
+  color: var(--biru-lembut);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  background: var(--biru-terang);
+  color: var(--biru-utama);
+}
+
+main {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 1.5rem 0 3rem;
+}
+
+.section {
+  margin: 2rem 0;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid rgba(215, 229, 239, 0.8);
+  border-radius: var(--radius-besar);
+  background: var(--putih);
+  box-shadow: 0 10px 35px rgba(30, 66, 99, 0.045);
+}
+
+.section--alt {
+  border-color: #d7eaf6;
+  background:
+    radial-gradient(ellipse at top right, rgba(210, 235, 249, 0.58), transparent 45%),
+    #edf6fc;
+}
+
+.section__judul {
+  font-size: clamp(1.8rem, 3.2vw, 2.45rem);
+  letter-spacing: -0.025em;
+}
+
+.section__deskripsi {
+  margin-top: 0.65rem;
+  font-size: 0.98rem;
+}
+
+.search-box {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) minmax(220px, 1fr);
+  align-items: center;
+  gap: 1rem;
+  max-width: 690px;
+  margin: 1.8rem 0 2rem;
+  padding: 0.55rem 0.7rem 0.55rem 1.15rem;
+  border: 1px solid var(--biru-garis);
+  border-radius: 16px;
+  background: #f8fbfe;
+}
+
+.search-box label {
+  color: var(--biru-malam);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.search-box input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.75rem 0.9rem;
+  border: 0;
+  border-radius: 10px;
+  outline: none;
+  background: var(--putih);
+  color: var(--teks);
+  font: inherit;
+  font-size: 0.92rem;
+}
+
+.search-box input:focus {
+  box-shadow: 0 0 0 3px rgba(40, 120, 184, 0.16);
+}
+
+.villa-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.2rem;
+}
+
+.villa-card {
+  position: relative;
+  overflow: hidden;
+  padding: 0 1.35rem 1.4rem;
+  border: 1px solid var(--biru-garis);
+  border-radius: 20px;
+  background: var(--putih);
+  box-shadow: 0 8px 24px rgba(30, 66, 99, 0.06);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.villa-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 34px rgba(30, 66, 99, 0.13);
+}
+
+.villa-card__foto {
+  width: calc(100% + 2.7rem);
+  display: block;
+  height: 190px;
+  margin: 0 -1.35rem 1.2rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+.villa-card h3 {
+  margin-bottom: 0.45rem;
+  font-size: 1.48rem;
+}
+
+.villa-card__tipe {
+  margin-bottom: 0.25rem;
+  color: var(--teks);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.villa-card__lokasi {
+  font-size: 0.84rem;
+}
+
+.villa-card__price {
+  margin: 1rem 0 0.8rem;
+  color: var(--biru-utama);
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 1.28rem;
+  font-weight: 600;
+}
+
+.villa-card__fasilitas-judul {
+  margin-bottom: 0.35rem;
+  color: var(--biru-malam);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.villa-card__fasilitas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.villa-card__fasilitas li {
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  background: #f0f6fa;
+  color: #49677e;
+  font-size: 0.76rem;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.72rem;
+  border-radius: 999px;
+  font-size: 0.77rem;
+  font-weight: 700;
+}
+
+.status::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  content: "";
+}
+
+.status--tersedia {
+  background: #e6f4fb;
+  color: #2878a8;
+}
+
+.status--penuh {
+  background: #fff0ec;
+  color: var(--koral-gelap);
+}
+
+.pesan-kosong {
+  grid-column: 1 / -1;
+  padding: 2rem;
+  border: 1px dashed #b6ccdc;
+  border-radius: 18px;
+  background: #f8fbfe;
+  text-align: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.8rem;
+  padding: clamp(1.1rem, 3vw, 2rem);
+  border: 1px solid rgba(215, 229, 239, 0.9);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.form-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-field label {
+  color: var(--biru-malam);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--biru-garis);
+  border-radius: var(--radius-kecil);
+  outline: none;
+  background: #fbfdff;
+  color: var(--teks);
+  font: inherit;
+  font-size: 0.92rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: var(--biru-utama);
+  box-shadow: 0 0 0 3px rgba(40, 120, 184, 0.14);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+}
+
+.tombol {
+  min-height: 48px;
+  padding: 0.75rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tombol:hover {
+  transform: translateY(-1px);
+}
+
+.tombol:focus-visible {
+  outline: 3px solid rgba(40, 120, 184, 0.35);
+  outline-offset: 3px;
+}
+
+.tombol--garis {
+  border-color: #a8c9dd;
+  background: var(--putih);
+  color: var(--biru-utama);
+}
+
+.tombol--garis:hover {
+  background: #e6f3fb;
+}
+
+.tombol--isi {
+  background: var(--biru-utama);
+  box-shadow: 0 7px 16px rgba(40, 120, 184, 0.2);
+  color: var(--putih);
+}
+
+.tombol--isi:hover {
+  background: var(--biru-malam);
+  box-shadow: 0 9px 20px rgba(22, 50, 79, 0.2);
+}
+
+.hasil-box {
+  max-width: 700px;
+  margin-top: 1.25rem;
+  border-radius: 16px;
+}
+
+.hasil-box:empty {
+  display: none;
+}
+
+.hasil-box p,
+.hasil-box h3 {
+  margin: 0 0 0.35rem;
+}
+
+.hasil-box--sukses,
+.hasil-box--gagal {
+  padding: 1.15rem 1.35rem;
+  animation: munculHasil 0.3s ease;
+}
+
+.hasil-box--sukses {
+  border: 1px solid #acd3e7;
+  background: #e8f5fb;
+}
+
+.hasil-box--sukses h3,
+.hasil-box--sukses p {
+  color: #205a7e;
+}
+
+.hasil-box--gagal {
+  border: 1px solid #f0b5a7;
+  background: #fff1ed;
+}
+
+.hasil-box--gagal p {
+  color: var(--koral-gelap);
+}
+
+@keyframes munculHasil {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.riwayat-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.35rem;
+}
+
+.riwayat-item {
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--biru-garis);
+  border-left: 4px solid var(--koral);
+  border-radius: 12px;
+  background: #fbfdff;
+  color: var(--teks);
+  font-size: 0.9rem;
+}
+
+.footer {
+  margin-top: 3rem;
+  padding: 3rem max(7vw, calc((100vw - 1120px) / 2));
+  background:
+    radial-gradient(ellipse at 95% 0%, rgba(68, 133, 174, 0.28), transparent 38%),
+    var(--biru-malam);
+}
+
+.footer__isi {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.footer h3 {
+  margin-bottom: 0.7rem;
+  color: var(--putih);
+  font-size: 1.5rem;
+}
+
+.footer p {
+  margin: 0.3rem 0;
+  color: #c4d7e6;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .header {
+    min-height: 350px;
+    padding-right: 5vw;
+    padding-left: 5vw;
+  }
+
+  .header__isi {
+    width: 65%;
+  }
+
+  .villa-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .villa-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  .header {
+    min-height: 350px;
+    align-items: flex-start;
+    padding: 4rem 1.35rem 5.5rem;
+  }
+
+  .header__isi {
+    width: 100%;
+  }
+
+  .header__judul {
+    font-size: clamp(3rem, 15vw, 4.2rem);
+  }
+
+  .header__tagline {
+    max-width: 40ch;
+    font-size: 0.98rem;
+  }
+
+  .header__hills {
+    display: none;
+  }
+
+  .header {
+    background-image:
+      linear-gradient(90deg, rgba(15, 39, 62, 0.9) 0%, rgba(20, 57, 84, 0.72) 66%, rgba(20, 57, 84, 0.5) 100%),
+      url("assets/permai.png");
+    background-position: center, 58% center;
+  }
+
+  .header__isi {
+    padding: 1rem 0;
+  }
+
+  .nav {
+    top: 8px;
+    width: calc(100% - 24px);
+    min-height: 58px;
+    justify-content: space-around;
+    gap: 0;
+    margin-top: -22px;
+    padding: 0.45rem;
+    border-radius: 15px;
+  }
+
+  .nav a {
+    padding: 0.55rem 0.62rem;
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  main {
+    width: calc(100% - 24px);
+    padding-top: 0.5rem;
+  }
+
+  .section {
+    margin: 1.25rem 0;
+    padding: 1.35rem;
+    border-radius: 21px;
+  }
+
+  .section__judul {
+    font-size: 1.8rem;
+  }
+
+  .search-box {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    margin: 1.25rem 0 1.5rem;
+    padding: 0.8rem;
+  }
+
+  .search-box label {
+    padding-left: 0.15rem;
+  }
+
+  .villa-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .villa-card:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+
+  .villa-card__foto {
+    height: 170px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.3rem;
+    padding: 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .tombol {
+    width: 100%;
+  }
+
+  .footer {
+    margin-top: 2rem;
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (min-width: 901px) {
+  main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(310px, 0.75fr);
+    align-items: start;
+    gap: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  .section {
+    margin: 0;
+  }
+
+  #daftar-vila {
+    grid-column: 1 / -1;
+    padding: 2.5rem;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #daftar-vila .section__judul,
+  #daftar-vila .section__deskripsi {
+    max-width: 700px;
+  }
+
+  .search-box {
+    margin: 1.2rem 0 1.5rem;
+  }
+
+  .villa-list {
+    margin-top: 1rem;
+  }
+
+  #form-pesan {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  #riwayat {
+    grid-column: 2;
+    grid-row: 2;
+    position: sticky;
+    top: 100px;
+    border-color: #c9e2f1;
+    background:
+      radial-gradient(ellipse at 100% 0%, rgba(181, 220, 240, 0.42), transparent 55%),
+      #eaf5fb;
+    box-shadow: none;
+  }
+
+  #form-pesan .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 641px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+
+  .section {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .section {
+    width: 100%;
+  }
+}
